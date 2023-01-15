@@ -38,8 +38,7 @@ public class main{
             System.out.println("DB connection not OK");
             e.printStackTrace();
         }
-
-        display();
+        Display.main();
     }
     private static void loadDriver(){
         //Charge juste les drivers
@@ -50,13 +49,5 @@ public class main{
             System.err.println("Drivers not OK");
             ex.printStackTrace();
         }
-    }
-    private static void display(){
-        //Initialisation menu
-        JFrame frame = new JFrame("Istore");
-        frame.setContentPane(new Login().panelMain);
-        frame.setSize(300,220);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
     }
 }
