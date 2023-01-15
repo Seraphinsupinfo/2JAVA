@@ -1,8 +1,8 @@
 public class Users {
-    int ID;
-    String firstName;
-    String lastName;
-    String email;
-    String role;
-    int shopID;
+    private int ID;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String role;
+    private int shopID;
 }

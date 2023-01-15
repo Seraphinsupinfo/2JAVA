@@ -1,3 +1,3 @@
 public class Inventories {
-    int ID;
+    private int ID;
 }

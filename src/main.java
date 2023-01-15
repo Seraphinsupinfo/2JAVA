@@ -1,12 +1,26 @@
 import java.sql.*;
 
 public class main {
+    private static String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA";
+    private static String USERNAME = "u788104185_Dev";
+    private static String PASSWORD = "Supinfo123??";
+
+    public static String getURL() {
+        return URL;
+    }
+
+    public static String getUSERNAME() {
+        return USERNAME;
+    }
+
+    public static String getPASSWORD() {
+        return PASSWORD;
+    }
+
     public static void main(String[] args) {
-        String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA";
-        String USERNAME = "u788104185_Dev";
-        String PASSWORD = "Supinfo123??";
+
         loadDriver();
-        connectDB(URL, USERNAME, PASSWORD);
+        connectDB(getURL(), getUSERNAME(), getPASSWORD());
 
     }
 
