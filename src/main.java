@@ -1,10 +1,12 @@
 import java.sql.*;
 import javax.swing.*;
+import java.util.*;
 
 public class main{
     private static String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA";
     private static String USERNAME = "u788104185_Dev";
     private static String PASSWORD = "Supinfo123??";
+
 
     public static String getURL() {
         return URL;
@@ -18,19 +20,33 @@ public class main{
         return PASSWORD;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
         loadDriver();
-        connectDB(getURL(), getUSERNAME(), getPASSWORD());
+        Optional<Connection> connectionDB = null;
+
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            System.out.println("DB connection OK");
+            connectionDB = Optional.ofNullable(DriverManager.getConnection(URL, USERNAME, PASSWORD));
+
 
         JFrame frame = new JFrame("Istore");
         frame.setContentPane(new Login().panelMain);
-        frame.setSize(250,100);
+        frame.setSize(1200,800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-    }
 
+        WhiteListsEmails whiteList = new WhiteListsEmails(connectionDB);
+
+
+
+
+        } catch (SQLException e) {
+            System.out.println("DB connection not OK");
+            e.printStackTrace();
+        }
+    }
     private static void loadDriver(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,14 +54,6 @@ public class main{
         } catch (Exception ex){
             System.err.println("Drivers not OK");
             ex.printStackTrace();
-        }
-    }
-    private static void connectDB(String URL, String USERNAME, String PASSWORD){
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            System.out.println("DB connection OK");
-        } catch (SQLException e) {
-            System.out.println("DB connection not OK");
-            e.printStackTrace();
         }
     }
 }
