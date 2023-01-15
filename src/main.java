@@ -3,11 +3,12 @@ import javax.swing.*;
 import java.util.*;
 
 public class main{
+    //Nos variables pour pouvoir se connecter à la DB
     private static String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA";
     private static String USERNAME = "u788104185_Dev";
     private static String PASSWORD = "Supinfo123??";
 
-
+    //Nos getters pour pouvoir les utiliser vu qu'ils sont en privés (pas besoin de setters)
     public static String getURL() {
         return URL;
     }
@@ -21,23 +22,24 @@ public class main{
     }
 
     public static void main(String[] args) throws SQLException {
-
+        //Chargement des drivers et connection
         loadDriver();
         Optional<Connection> connectionDB = null;
 
+        //Initialisation connection
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             System.out.println("DB connection OK");
             connectionDB = Optional.ofNullable(DriverManager.getConnection(URL, USERNAME, PASSWORD));
 
+            //Initialisation menu
+            JFrame frame = new JFrame("Istore");
+            frame.setContentPane(new Login().panelMain);
+            frame.setSize(1200,800);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
 
-        JFrame frame = new JFrame("Istore");
-        frame.setContentPane(new Login().panelMain);
-        frame.setSize(1200,800);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-
-        WhiteListsEmails whiteList = new WhiteListsEmails(connectionDB);
+            //Liste des adresses stockées dans la seule variable de la classe
+            WhiteListsEmails whiteList = new WhiteListsEmails(connectionDB);
 
 
 
@@ -48,6 +50,7 @@ public class main{
         }
     }
     private static void loadDriver(){
+        //Charge juste les drivers
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Drivers OK");
