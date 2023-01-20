@@ -33,6 +33,7 @@ public class main{
 
             //Liste des adresses stockées dans la seule variable de la classe
             WhiteListsEmails whiteList = new WhiteListsEmails(connectionDB);
+            whiteList.insertWhitelist();
 
         } catch (SQLException e) {
             System.out.println("DB connection not OK");
