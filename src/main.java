@@ -1,5 +1,6 @@
+import Interfaces.Display;
+
 import java.sql.*;
-import javax.swing.*;
 import java.util.*;
 
 public class main{
