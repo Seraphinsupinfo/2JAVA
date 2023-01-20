@@ -9,6 +9,10 @@ public class WhiteListsEmails {
         whiteList = returnWhitelist(connection);
     }
 
+    public static ArrayList<String> getWhiteList() {
+        return whiteList;
+    }
+
     private ArrayList<String> returnWhitelist(Optional<Connection> connection) throws SQLException {
         //Pour toutes les adresses on ajoute dans la liste
         ArrayList<String> whitelist = new ArrayList<>();
