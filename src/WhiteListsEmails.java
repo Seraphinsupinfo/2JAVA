@@ -1,3 +1,6 @@
+import Interfaces.Display;
+import Interfaces.SignUp;
+
 import java.sql.*;
 import java.util.*;
 
@@ -17,7 +20,9 @@ public class WhiteListsEmails {
         return whiteList;
     }
 
-
+    public static void setEmail(String email) {
+        WhiteListsEmails.email = email;
+    }
 
     public void insertWhitelist () throws SQLException {
         //Fonction servant à mettre de nouvelles adresses dans la table WhiteList
@@ -27,6 +32,10 @@ public class WhiteListsEmails {
             statement.setString(1, email);
             statement.executeUpdate();
         }
+    }
+
+    public void deleteWhitelist() throws SQLException{
+        email = SignUp.email;
     }
 
     private ArrayList<String> returnWhitelist() throws SQLException {

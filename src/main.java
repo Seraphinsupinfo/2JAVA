@@ -32,9 +32,6 @@ public class main{
             System.out.println("DB connection OK");
             connectionDB = Optional.ofNullable(DriverManager.getConnection(URL, USERNAME, PASSWORD));
 
-            //Liste des adresses stockées dans la seule variable de la classe
-            WhiteListsEmails whiteList = new WhiteListsEmails(connectionDB);
-            whiteList.insertWhitelist();
 
         } catch (SQLException e) {
             System.out.println("DB connection not OK");
