@@ -30,10 +30,16 @@ public class Display {
 
     protected static void test(){
         //Initialisation menu
-        frame.setContentPane(new HomeSeller().panelMain);
+        frame.setContentPane(new HomeAdmin().panelMain);
         frame.setSize(600,500);
     }
-    protected static void home_seller(){
+
+    protected static void homeAdmin(){
+        //Initialisation menu
+        frame.setContentPane(new HomeAdmin().panelMain);
+        frame.setSize(600,500);
+    }
+    protected static void homeSeller(){
         //Initialisation menu
         frame.setContentPane(new HomeSeller().panelMain);
         frame.setSize(600,500);
