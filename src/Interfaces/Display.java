@@ -30,8 +30,7 @@ public class Display {
 
     protected static void test(){
         //Initialisation menu
-        frame.setContentPane(new StockSeller().panelMain);
-        frame.setSize(1000,900);
+      stockSeller();
     }
 
     protected static void homeAdmin(){
