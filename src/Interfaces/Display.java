@@ -30,8 +30,8 @@ public class Display {
 
     protected static void test(){
         //Initialisation menu
-        frame.setContentPane(new HomeAdmin().panelMain);
-        frame.setSize(600,500);
+        frame.setContentPane(new HomeUser().panelMain);
+        frame.setSize(600,350);
     }
 
     protected static void homeAdmin(){
@@ -43,5 +43,10 @@ public class Display {
         //Initialisation menu
         frame.setContentPane(new HomeSeller().panelMain);
         frame.setSize(600,500);
+    }
+    protected static void homeUser(){
+        //Initialisation menu
+        frame.setContentPane(new HomeUser().panelMain);
+        frame.setSize(600,350);
     }
 }
