@@ -11,6 +11,7 @@ public class SignUp {
     private JPasswordField confirmerMotDePassePasswordField;
     private JTextField nomDUtilisateurTextField;
     private JTextField emailTextField;
+    private JButton retourButton;
     public static String email;
     public SignUp() {
         continuerButton.addActionListener(new ActionListener() {
@@ -18,6 +19,13 @@ public class SignUp {
             public void actionPerformed(ActionEvent e) {
                 email = nomDUtilisateurTextField.getText();
                 System.out.println(email);
+            }
+        });
+        retourButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.frame.dispose();
+                Display.main();
             }
         });
     }

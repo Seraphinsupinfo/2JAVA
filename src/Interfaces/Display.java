@@ -20,7 +20,7 @@ public class Display {
     protected static void signUp(){
         //Initialisation menu
         frame.setContentPane(new SignUp().panelMain);
-        frame.setSize(400,600);
+        frame.setSize(400,300);
     }
     protected static void logIn(){
         //Initialisation menu
