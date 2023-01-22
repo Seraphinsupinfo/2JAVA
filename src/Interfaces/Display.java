@@ -28,7 +28,12 @@ public class Display {
         frame.setSize(350,250);
     }
 
-    private static void home_seller(){
+    protected static void test(){
+        //Initialisation menu
+        frame.setContentPane(new HomeSeller().panelMain);
+        frame.setSize(600,500);
+    }
+    protected static void home_seller(){
         //Initialisation menu
         frame.setContentPane(new HomeSeller().panelMain);
         frame.setSize(600,500);

@@ -19,5 +19,12 @@ public class Login {
                 Display.main();
             }
         });
+
+        seConnecterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.test();
+            }
+        });
     }
 }
