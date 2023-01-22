@@ -22,10 +22,10 @@ public class Display {
         frame.setContentPane(new SignUp().panelMain);
         frame.setSize(400,600);
     }
-    protected static void loggIn(){
+    protected static void logIn(){
         //Initialisation menu
         frame.setContentPane(new Login().panelMain);
-        frame.setSize(300,220);
+        frame.setSize(350,250);
     }
 
     private static void home_seller(){

@@ -18,7 +18,7 @@ public Main() {
     seConnecterButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Display.loggIn();
+            Display.logIn();
         }
     });
 }
