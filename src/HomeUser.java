@@ -1,17 +1,15 @@
-package Interfaces;
-
 import javax.swing.*;
 
-public class HomeAdmin {
-    private JButton gérerLesUtilisateursButton;
+public class HomeUser {
     protected JPanel panelMain;
-    private JButton gérerLesMagasinsButton;
-    private JButton gérerLesEMailsButton;
+    private JButton accederÀUnMagasinButton;
+    private JButton monCompteButton;
+
     private JLabel labelText;
 
     private String firstName = "[ta variable nom]";
 
-    HomeAdmin(){
+    HomeUser(){
         labelText.setText("Bonjour "+ firstName + ", que voulez-vous faire ?");
     }
 }

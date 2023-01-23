@@ -1,6 +1,3 @@
-import Interfaces.Display;
-import Interfaces.SignUp;
-
 import java.sql.*;
 import java.util.*;
 

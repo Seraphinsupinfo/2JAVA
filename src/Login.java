@@ -1,8 +1,7 @@
-package Interfaces;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class Login {
     public JPanel panelMain;
@@ -24,6 +23,11 @@ public class Login {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.test();
+                Users actualUser = new Users();
+                actualUser.setMail(textField1.getText());
+                actualUser.setPwd(Arrays.toString(passwordField1.getPassword()));
+                System.out.println(actualUser.getMail() + " " + actualUser.getPwd());
+                actualUser.validUser();
             }
         });
     }

@@ -1,5 +1,3 @@
-import Interfaces.Display;
-
 import java.sql.*;
 import java.util.*;
 
@@ -8,6 +6,7 @@ public class main{
     private static String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA";
     private static String USERNAME = "u788104185_Dev";
     private static String PASSWORD = "Supinfo123??";
+    private static Optional<Connection> connectionDB = null;
 
     //Nos getters pour pouvoir les utiliser vu qu'ils sont en privés (pas besoin de setters)
     public static String getURL() {
@@ -22,10 +21,14 @@ public class main{
         return PASSWORD;
     }
 
+    public static Optional<Connection> getConnectionDB() {
+        return connectionDB;
+    }
+
     public static void main(String[] args) throws SQLException {
         //Chargement des drivers et connection
         loadDriver();
-        Optional<Connection> connectionDB = null;
+
 
         //Initialisation connection
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
