@@ -1,3 +1,6 @@
+import Interfaces.Display;
+import Interfaces.SignUp;
+
 import java.sql.*;
 import java.util.*;
 
@@ -32,7 +35,7 @@ public class WhiteListsEmails {
     }
 
     public void deleteWhitelist() throws SQLException{
-        System.out.println(email);
+        email = SignUp.email;
     }
 
     private ArrayList<String> returnWhitelist() throws SQLException {

@@ -1,12 +1,14 @@
+package Interfaces;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainDisplay {
+public class Main {
     public JPanel panelMain;
     public JButton créerUnCompteButton;
     public JButton seConnecterButton;
-public MainDisplay() {
+public Main() {
     créerUnCompteButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {

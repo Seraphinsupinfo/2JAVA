@@ -1,3 +1,9 @@
+package Interfaces;
+
+import Interfaces.Main;
+import Interfaces.SignUp;
+import Interfaces.HomeSeller;
+
 import javax.swing.*;
 
 public class Display {
@@ -5,7 +11,7 @@ public class Display {
     public static void main(){
         //Initialisation menu
         Display.frame = new JFrame("Istore");
-        frame.setContentPane(new MainDisplay().panelMain);
+        frame.setContentPane(new Main().panelMain);
         frame.setSize(300,220);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
