@@ -22,7 +22,7 @@ public class Login {
         seConnecterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.test();
+                Display.errorPopUp("Ton message");
                 Users actualUser = new Users();
                 actualUser.setMail(textField1.getText());
                 actualUser.setPwd(Arrays.toString(passwordField1.getPassword()));

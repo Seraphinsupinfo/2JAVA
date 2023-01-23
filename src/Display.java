@@ -47,4 +47,13 @@ public class Display {
         frame.setContentPane(new StockSeller().panelMain);
         frame.setSize(1000,850);
     }
+    public static void errorPopUp(String message){
+        //Initialisation menu
+        ErrorPopUp.varText=message;
+        Display.frame = new JFrame("Erreur");
+        frame.setContentPane(new ErrorPopUp().panelMain);
+        frame.setSize(300,220);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
 }
