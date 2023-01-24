@@ -38,6 +38,8 @@ public class Users {
                 preparedStatement.setString(2, pwd);
                 ResultSet rs = preparedStatement.executeQuery();
                 boolean loginOk = rs.next();
+                role = rs.getString(1);
+                System.out.println(role);
                 if (loginOk){
                     return true;
                 } else {
