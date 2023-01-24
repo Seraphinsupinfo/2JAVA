@@ -31,15 +31,19 @@ public class Users {
         return pwd;
     }
 
+    public String getRole() {return role;}
+
     public boolean validUser(){
         if (main.getConnectionDB().isPresent()){
-            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT role FROM users WHERE email = ? AND password = ?")){
+            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT role, password FROM users WHERE email = ?")){
                 preparedStatement.setString(1, mail);
-                preparedStatement.setString(2, pwd);
                 ResultSet rs = preparedStatement.executeQuery();
                 boolean loginOk = rs.next();
-                role = rs.getString(1);
-                System.out.println(role);
+                if (rs.next()){
+                    role = rs.getString(1);
+                    System.out.println(role);
+                }
+
                 if (loginOk){
                     return true;
                 } else {

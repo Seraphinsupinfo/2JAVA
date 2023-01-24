@@ -22,12 +22,25 @@ public class Login {
         seConnecterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.errorPopUp("Ton message");
+
                 Users actualUser = new Users();
                 actualUser.setMail(textField1.getText());
                 actualUser.setPwd(Arrays.toString(passwordField1.getPassword()));
                 System.out.println(actualUser.getMail() + " " + actualUser.getPwd());
-                actualUser.validUser();
+                if (actualUser.validUser()){
+                    Display.errorPopUp("Identifiants incorrects");
+                } else if (actualUser.getRole() == "admin"){
+                    System.out.println("connecté en tant qu'admin");
+                    Display.homeAdmin();
+                } else if (actualUser.getRole() == "vendeur") {
+                    System.out.println("connecté en tant que vendeur");
+                    Display.homeSeller();
+                } else if (actualUser.getRole() == "user") {
+                    System.out.println("connecté en tant qu'utilisateur");
+                    Display.homeUser();
+                } else {
+                    Display.errorPopUp("Une erreur est survenue... rôle incorrect");
+                }
             }
         });
     }
