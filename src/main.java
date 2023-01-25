@@ -7,23 +7,14 @@ public class main{
     private static String USERNAME = "u788104185_Dev";
     private static String PASSWORD = "Supinfo123??";
     private static Optional<Connection> connectionDB = null;
+    private static Users actualUser = new Users();
+    private static Shops actualShop = new Shops();
 
     //Nos getters pour pouvoir les utiliser vu qu'ils sont en privés (pas besoin de setters)
-    public static String getURL() {
-        return URL;
-    }
+    public static Optional<Connection> getConnectionDB() {return connectionDB;}
+    public static Users getActualUser() {return actualUser;}
 
-    public static String getUSERNAME() {
-        return USERNAME;
-    }
-
-    public static String getPASSWORD() {
-        return PASSWORD;
-    }
-
-    public static Optional<Connection> getConnectionDB() {
-        return connectionDB;
-    }
+    public static Shops getActualShop() {return actualShop;}
 
     public static void main(String[] args) throws SQLException {
         //Chargement des drivers et connection

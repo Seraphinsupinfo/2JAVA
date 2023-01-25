@@ -10,12 +10,12 @@ public class HomeSeller {
     private JButton voirLesStocksButton;
     private JLabel labelText;
 
-    private String firstName = "[ta variable nom]";
-    private String shop = "[ta variable shop]";
+    private String firstName = main.getActualUser().getFirstName();
+    private int shop = main.getActualUser().getShopID();
 
 
     HomeSeller(){
-        labelText.setText("Bonjour "+ firstName + ", vous êtes assignés au magasin " + shop);
+        labelText.setText("Bonjour "+ firstName + ", vous gérez le magasin n°" + shop);
 
         voirLesStocksButton.addActionListener(new ActionListener() {
             @Override

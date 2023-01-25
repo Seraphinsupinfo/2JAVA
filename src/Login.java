@@ -23,11 +23,10 @@ public class Login {
         seConnecterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Users actualUser = new Users();
                 String checkUser = textField1.getText();
                 String checkPassword = String.valueOf(passwordField1.getPassword());
-                boolean userOk = actualUser.validUser(checkUser, checkPassword);
-                String role = actualUser.getRole();
+                boolean userOk = main.getActualUser().validUser(checkUser, checkPassword);
+                String role = main.getActualUser().getRole();
                 if (!userOk){
                     Display.errorPopUp("Identifiants incorrects");
                 } else if (Objects.equals(role, "admin")){

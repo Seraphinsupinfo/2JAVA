@@ -14,6 +14,8 @@ public class Users {
     private int shopID;
 
     public String getRole() {return role;}
+    public String getFirstName() {return firstName;}
+    public int getShopID() {return shopID;}
 
     public boolean validUser(String checkMail, String checkPassword){
         if (main.getConnectionDB().isPresent()){
