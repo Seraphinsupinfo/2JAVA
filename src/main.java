@@ -3,7 +3,7 @@ import java.util.*;
 
 public class main{
     //Nos variables pour pouvoir se connecter à la DB
-    private static String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA";
+    private static String URL = "jdbc:mysql://54.37.31.19:3306/u788104185_2JAVA?autoReconnect=true";
     private static String USERNAME = "u788104185_Dev";
     private static String PASSWORD = "Supinfo123??";
     private static Optional<Connection> connectionDB = null;

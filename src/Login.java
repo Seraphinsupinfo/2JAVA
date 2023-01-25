@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Login {
     public JPanel panelMain;
@@ -22,22 +23,20 @@ public class Login {
         seConnecterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Users actualUser = new Users();
-                actualUser.setMail(textField1.getText());
-                actualUser.setPwd(Arrays.toString(passwordField1.getPassword()));
-                System.out.println(actualUser.getMail() + " " + actualUser.getPwd());
-                boolean userOk = actualUser.validUser();
-                System.out.println(actualUser.getRole());
+                String checkUser = textField1.getText();
+                String checkPassword = String.valueOf(passwordField1.getPassword());
+                boolean userOk = actualUser.validUser(checkUser, checkPassword);
+                String role = actualUser.getRole();
                 if (!userOk){
                     Display.errorPopUp("Identifiants incorrects");
-                } else if (actualUser.getRole() == "admin"){
+                } else if (Objects.equals(role, "admin")){
                     System.out.println("connecté en tant qu'admin");
                     Display.homeAdmin();
-                } else if (actualUser.getRole() == "seller") {
+                } else if (Objects.equals(role, "seller")) {
                     System.out.println("connecté en tant que vendeur");
                     Display.homeSeller();
-                } else if (actualUser.getRole() == "default") {
+                } else if (Objects.equals(role, "default")) {
                     System.out.println("connecté en tant qu'utilisateur");
                     Display.homeUser();
                 } else {
