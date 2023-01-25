@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public class Display {
     public static JFrame frame;
+    public static JFrame Errframe;
     public static void main(){
         //Initialisation menu
         Display.frame = new JFrame("Istore");
@@ -50,10 +51,10 @@ public class Display {
     public static void errorPopUp(String message){
         //Initialisation menu
         ErrorPopUp.varText=message;
-        Display.frame = new JFrame("Erreur");
-        frame.setContentPane(new ErrorPopUp().panelMain);
-        frame.setSize(300,220);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        Display.Errframe = new JFrame("Erreur");
+        Errframe.setContentPane(new ErrorPopUp().panelMain);
+        Errframe.setSize(220,180);
+        Errframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Errframe.setVisible(true);
     }
 }
