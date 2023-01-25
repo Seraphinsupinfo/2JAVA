@@ -27,15 +27,17 @@ public class Login {
                 actualUser.setMail(textField1.getText());
                 actualUser.setPwd(Arrays.toString(passwordField1.getPassword()));
                 System.out.println(actualUser.getMail() + " " + actualUser.getPwd());
-                if (actualUser.validUser()){
+                boolean userOk = actualUser.validUser();
+                System.out.println(actualUser.getRole());
+                if (!userOk){
                     Display.errorPopUp("Identifiants incorrects");
                 } else if (actualUser.getRole() == "admin"){
                     System.out.println("connecté en tant qu'admin");
                     Display.homeAdmin();
-                } else if (actualUser.getRole() == "vendeur") {
+                } else if (actualUser.getRole() == "seller") {
                     System.out.println("connecté en tant que vendeur");
                     Display.homeSeller();
-                } else if (actualUser.getRole() == "user") {
+                } else if (actualUser.getRole() == "default") {
                     System.out.println("connecté en tant qu'utilisateur");
                     Display.homeUser();
                 } else {

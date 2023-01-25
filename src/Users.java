@@ -35,13 +35,22 @@ public class Users {
 
     public boolean validUser(){
         if (main.getConnectionDB().isPresent()){
-            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT role, password FROM users WHERE email = ?")){
+            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT * FROM users WHERE email = ?")){
                 preparedStatement.setString(1, mail);
                 ResultSet rs = preparedStatement.executeQuery();
-                boolean loginOk = rs.next();
+                boolean loginOk = false;
                 if (rs.next()){
-                    role = rs.getString(1);
+                    ID = rs.getInt(1);
+                    firstName = rs.getString(2);
+                    lastName = rs.getString(3);
+                    mail = rs.getString(4);
+                    role = rs.getString(5);
+                    shopID = rs.getInt(6);
+                    pseudo = rs.getString(7);
+                    pwd = rs.getString(8);
                     System.out.println(role);
+                    System.out.println(pwd);
+                    loginOk = true;
                 }
 
                 if (loginOk){
