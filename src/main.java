@@ -7,31 +7,28 @@ public class main{
     private static String USERNAME = "u788104185_Dev";
     private static String PASSWORD = "Supinfo123??";
     private static Optional<Connection> connectionDB = null;
-    private static Users actualUser = new Users();
-    private static Shops actualShop = new Shops();
+    private static Users actualUser;
 
     //Nos getters pour pouvoir les utiliser vu qu'ils sont en privés (pas besoin de setters)
     public static Optional<Connection> getConnectionDB() {return connectionDB;}
     public static Users getActualUser() {return actualUser;}
 
-    public static Shops getActualShop() {return actualShop;}
 
     public static void main(String[] args) throws SQLException {
         //Chargement des drivers et connection
         loadDriver();
 
-
         //Initialisation connection
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             System.out.println("DB connection OK");
             connectionDB = Optional.ofNullable(DriverManager.getConnection(URL, USERNAME, PASSWORD));
-
+            actualUser = new Users();
+            Display.main();
 
         } catch (SQLException e) {
             System.out.println("DB connection not OK");
             e.printStackTrace();
         }
-        Display.main();
     }
     private static void loadDriver(){
         //Charge juste les drivers
