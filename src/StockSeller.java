@@ -1,5 +1,7 @@
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JTable;
 
@@ -17,7 +19,22 @@ public class StockSeller {
     }
 
     public StockSeller() {
+
         this.tableArticles.setModel(new ModelDeTableDItems(Login.getActualShop().getItems()));
+
+        retourButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.homeSeller();
+            }
+        });
+
+        validerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //apelle ta fonction ici
+            }
+        });
     }
 }
 
