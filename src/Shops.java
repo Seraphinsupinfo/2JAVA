@@ -13,6 +13,14 @@ public class Shops {
         return items;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
     public Shops(int ID) {
         this.ID = ID;
 

@@ -11,11 +11,11 @@ public class HomeSeller {
     private JLabel labelText;
 
     private String firstName = main.getActualUser().getFirstName();
-    private int shop = main.getActualUser().getShopID();
+    private String shop = Login.getActualShop().getName() + " " + Login.getActualShop().getLocation();
 
 
     HomeSeller(){
-        labelText.setText("Bonjour "+ firstName + ", vous gérez le magasin n°" + shop);
+        labelText.setText("Bonjour "+ firstName + ", vous gérez le magasin " + shop);
 
         voirLesStocksButton.addActionListener(new ActionListener() {
             @Override
