@@ -10,9 +10,9 @@ public class StockSeller {
 
     protected JPanel panelMain;
     private JButton retourButton;
-    private JTextField textField1;
-    private JTextField textField2;
     private JButton validerButton;
+    private JComboBox comboBox1;
+    private JComboBox comboBox2;
 
     public boolean isModified(Items data) {
         return false;
