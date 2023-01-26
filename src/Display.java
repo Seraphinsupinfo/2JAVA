@@ -48,6 +48,12 @@ public class Display {
         frame.setContentPane(new StockSeller().panelMain);
         frame.setSize(1000,850);
     }
+
+    protected static void whiteList(){
+        //Initialisation menu
+        frame.setContentPane(new WhiteListGestion().panelMain);
+        frame.setSize(1000,850);
+    }
     public static void errorPopUp(String message){
         //Initialisation menu
         ErrorPopUp.varText=message;
