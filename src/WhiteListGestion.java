@@ -9,6 +9,7 @@ public class WhiteListGestion {
     private JButton ajouterButton;
     private JTable table1;
     protected JPanel panelMain;
+    private JScrollBar scrollBar1;
 
     WhiteListGestion(){
 
