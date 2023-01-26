@@ -14,7 +14,7 @@ public class HomeAdmin {
     HomeAdmin(){
         labelText.setText("Bonjour "+ firstName + ", que voulez-vous faire ?");
 
-        gérerLesUtilisateursButton.addActionListener(new ActionListener() {
+        gérerLesEMailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.whiteList();
