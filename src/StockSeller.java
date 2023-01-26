@@ -32,10 +32,12 @@ public class StockSeller {
         validerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //apelle ta fonction ici
             }
         });
     }
+
+
+
 }
 
 class ModelDeTableDItems extends AbstractTableModel {
