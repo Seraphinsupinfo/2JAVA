@@ -17,9 +17,7 @@ public class StockSeller {
     }
 
     public StockSeller() {
-        System.out.println("On initialise bien la JTable");
         this.tableArticles.setModel(new ModelDeTableDItems(Login.getActualShop().getItems()));
-        System.out.println("Jtable initialisée");
     }
 }
 
