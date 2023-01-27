@@ -23,12 +23,11 @@ public class WhiteListsEmails {
     }
 
     public boolean isInWhiteList(String checkEmail){
-        whiteList = refreshList();
+        System.out.println(whiteList);
         for (WhiteMail whiteMail : whiteList) {
             System.out.println(whiteMail.getEmail());
-            return true;
         }
-        return false;
+        return true;
     }
 
     public ArrayList<WhiteMail> refreshList() {
@@ -37,8 +36,8 @@ public class WhiteListsEmails {
             try (Statement st = main.getConnectionDB().get().createStatement()){
                 try (ResultSet rs = st.executeQuery("SELECT * FROM white_list")){
                     while (rs.next()) {
-                        System.out.println(rs.getString(2) + " " + rs.getInt(1));
                         whiteList.add(new WhiteMail(rs.getInt(1), rs.getString(2)));
+                        System.out.println(rs.getInt(1) + " " + rs.getString(2));
                     }
                 return whiteList;
                 }
