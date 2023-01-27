@@ -48,7 +48,6 @@ public class Shops {
             try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT * FROM items WHERE shop_id = ?")) {
                 preparedStatement.setInt(1, shopID);
                 ResultSet rs = preparedStatement.executeQuery();
-                boolean boucle = true;
                 while(rs.next()) {
                     items.add(new Items(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
                 }

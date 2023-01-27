@@ -8,10 +8,12 @@ public class main{
     private static String PASSWORD = "Supinfo123??";
     private static Optional<Connection> connectionDB = null;
     private static Users actualUser;
+    private static WhiteListsEmails whiteList;
 
     //Nos getters pour pouvoir les utiliser vu qu'ils sont en privés (pas besoin de setters)
     public static Optional<Connection> getConnectionDB() {return connectionDB;}
     public static Users getActualUser() {return actualUser;}
+    public static WhiteListsEmails getWhiteList() {return whiteList;}
 
 
     public static void main(String[] args) throws SQLException {
@@ -23,6 +25,7 @@ public class main{
             System.out.println("DB connection OK");
             connectionDB = Optional.ofNullable(DriverManager.getConnection(URL, USERNAME, PASSWORD));
             actualUser = new Users();
+            whiteList = new WhiteListsEmails();
             Display.main();
 
         } catch (SQLException e) {
