@@ -20,14 +20,17 @@ public class Shops {
     public String getLocation() {
         return location;
     }
+
+    public int getID() {
+        return ID;
+    }
+
     public Shops(int ID) {
         this.ID = ID;
-
         if (main.getConnectionDB().isPresent()) {
             try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT * FROM shops WHERE ID = ?")) {
                 preparedStatement.setInt(1, ID);
                 ResultSet rs = preparedStatement.executeQuery();
-
                 if (rs.next())
                     this.name = rs.getString(2);
                     this.location = rs.getString(3);
@@ -47,7 +50,6 @@ public class Shops {
                 ResultSet rs = preparedStatement.executeQuery();
                 boolean boucle = true;
                 while(rs.next()) {
-                    System.out.println(rs.getInt(1) + " " + rs.getString(2) + " " + rs.getInt(3) + " " + rs.getInt(4) + " " + rs.getInt(5));
                     items.add(new Items(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
                 }
                 return items;

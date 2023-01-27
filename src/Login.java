@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Login {
-    private static Shops actualShop;
+    static Shops actualShop;
     public JPanel panelMain;
     private JPasswordField passwordField1;
     private JTextField textField1;

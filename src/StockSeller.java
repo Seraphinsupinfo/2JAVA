@@ -2,6 +2,9 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
 
@@ -14,9 +17,6 @@ public class StockSeller {
     private JTextField fieldQtt;
     private JButton validerButton;
 
-    public boolean isModified(Items data) {
-        return false;
-    }
 
     private static boolean verifInt(String s) {
         boolean isInt = true;
@@ -39,12 +39,21 @@ public class StockSeller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (verifInt(fieldQtt.getText())){
-                    //ton code qtt OK
-
-                    if (verifInt(fieldId.getText())){
-                        //ton code ID OK
-                    }
-                    else {
+                    if (verifInt(fieldId.getText())) {
+                        try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT shop_id FROM items WHERE ID = ?")) {
+                            preparedStatement.setInt(1, Integer.parseInt(fieldId.getText()));
+                            ResultSet rs = preparedStatement.executeQuery();
+                            if (rs.next())
+                                if (rs.getInt(1) == Login.getActualShop().getID()){
+                                    Items.actualiserItemQuantity(Integer.parseInt(fieldId.getText()), Integer.parseInt(fieldQtt.getText()));
+                                    Login.actualShop = new Shops(main.getActualUser().getShopID());
+                                    Display.stockSeller();
+                                }
+                        } catch (SQLException ex) {
+                            Display.errorPopUp("L'ID de l'article selectionné n'appartient pas à votre magasin, veuillez sélectionner un ID corretct");
+                            throw new RuntimeException(ex);
+                        }
+                    }else {
                         Display.errorPopUp("ID invalide");
                     }
                 }

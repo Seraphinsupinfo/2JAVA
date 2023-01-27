@@ -42,7 +42,7 @@ public class Items {
     public static void actualiserItemQuantity(int inputID, int newQuantity) {
         if (main.getConnectionDB().isPresent()) {
             if (newQuantity >= 0) {
-                try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("UPDATE quantity = ? FROM items WHERE ID = ?")) {
+                try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("UPDATE items SET quantity = ? WHERE ID = ?")) {
                     preparedStatement.setInt(1, newQuantity);
                     preparedStatement.setInt(2, inputID);
                     preparedStatement.executeUpdate();
