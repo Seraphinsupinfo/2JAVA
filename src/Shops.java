@@ -20,7 +20,6 @@ public class Shops {
     public String getLocation() {
         return location;
     }
-
     public Shops(int ID) {
         this.ID = ID;
 

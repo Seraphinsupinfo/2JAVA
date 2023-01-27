@@ -10,14 +10,20 @@ public class StockSeller {
 
     protected JPanel panelMain;
     private JButton retourButton;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField fieldId;
+    private JTextField fieldQtt;
     private JButton validerButton;
 
     public boolean isModified(Items data) {
         return false;
     }
 
+    private static boolean verifInt(String s) {
+        boolean isInt = true;
+        try{ Integer.parseInt(s); }
+        catch(NumberFormatException nfe){ isInt = false; }
+        return isInt;
+    }
     public StockSeller() {
 
         this.tableArticles.setModel(new ModelDeTableDItems(Login.getActualShop().getItems()));
@@ -32,6 +38,25 @@ public class StockSeller {
         validerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (verifInt(fieldQtt.getText())){
+                    //ton code qtt OK
+
+                    if (verifInt(fieldId.getText())){
+                        //ton code ID OK
+                    }
+                    else {
+                        Display.errorPopUp("ID invalide");
+                    }
+                }
+                else {
+                    if (!verifInt(fieldId.getText())){
+                        Display.errorPopUp("ID et Quantité invalide");
+                    }
+                    else {
+                        Display.errorPopUp("Quantité invalide");
+                    }
+                }
+
             }
         });
     }
