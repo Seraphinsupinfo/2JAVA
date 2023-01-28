@@ -2,23 +2,22 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class WhiteMail {
-    private static int ID;
-    private static String email;
+    private int ID;
+    private String email;
 
     public WhiteMail(int ID, String email) {
         this.ID = ID;
         this.email = email;
-        System.out.println(this.ID + " " + this.email);
     }
 
     public WhiteMail(String email) {
         this.email = email;
     }
 
-    public static int getID() {return ID;}
-    public static String getEmail() {System.out.println(email);return email;}
+    public int getID() {return ID;}
+    public String getEmail() {return email;}
 
-    public static void insertWhiteList(){
+    public void insertWhiteList(){
         //Fonction servant à mettre de nouvelles adresses dans la table WhiteList
         if (email.contains("@") && email.contains(".") && email.length() > 8) {
             if (main.getWhiteList().isInWhiteList(email)){
@@ -27,6 +26,8 @@ public class WhiteMail {
                 try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("INSERT INTO white_list (email) VALUES (?)")) {
                     preparedStatement.setString(1, email);
                     preparedStatement.executeUpdate();
+                    main.getWhiteList().refreshList();
+                    Display.whiteList();
                     Display.errorPopUp("Adresse mail ajoutée avec succès");
                 } catch (SQLException e) {
                     Display.errorPopUp("Une erreur est survenue... Création impossible");

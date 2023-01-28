@@ -21,7 +21,6 @@ public class HomeAdmin {
         gérerLesEMailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                WhiteListsEmails whiteListsEmails = new WhiteListsEmails();
                 Display.whiteList();
             }
         });

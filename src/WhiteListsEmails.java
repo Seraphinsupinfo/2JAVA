@@ -12,6 +12,9 @@ public class WhiteListsEmails {
                         whiteList.add(new WhiteMail(rs.getInt(1), rs.getString(2)));
                     }
                 }
+                for (int i = 0; i < whiteList.size(); i ++){
+                    System.out.println(whiteList.size() + "Adresses mails :" + whiteList.get(i).getEmail());
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }

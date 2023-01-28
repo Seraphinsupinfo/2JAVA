@@ -38,7 +38,6 @@ public class WhiteListGestion {
         ajouterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                main.getWhiteList().refreshList();
                 WhiteMail newWhiteMail = new WhiteMail(entrezMailOuIDTextField.getText());
                 newWhiteMail.insertWhiteList();
             }
