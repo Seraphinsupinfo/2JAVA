@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/Items.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/Shops.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/WhiteListsEmails.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/WhiteMail.java" dialect="GenericSQL" />
   </component>
 </project>

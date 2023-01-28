@@ -2,9 +2,6 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class WhiteListGestion {
@@ -31,7 +28,13 @@ public class WhiteListGestion {
         supprimerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ta fonction
+                if (StockSeller.verifInt(entrezMailOuIDTextField.getText())) {
+                    WhiteMail delWhiteMail = new WhiteMail(Integer.parseInt(entrezMailOuIDTextField.getText()));
+                    delWhiteMail.deleteWhiteMail();
+                } else {
+                    WhiteMail delWhiteMail = new WhiteMail(entrezMailOuIDTextField.getText());
+                    delWhiteMail.deleteWhiteMail();
+                }
             }
         });
 
@@ -39,7 +42,7 @@ public class WhiteListGestion {
             @Override
             public void actionPerformed(ActionEvent e) {
                 WhiteMail newWhiteMail = new WhiteMail(entrezMailOuIDTextField.getText());
-                newWhiteMail.insertWhiteList();
+                newWhiteMail.insertWhiteMail();
             }
         });
 
