@@ -12,9 +12,6 @@ public class WhiteListsEmails {
                         whiteList.add(new WhiteMail(rs.getInt(1), rs.getString(2)));
                     }
                 }
-                for (int i = 0; i < whiteList.size(); i ++){
-                    System.out.println(whiteList.size() + "Adresses mails :" + whiteList.get(i).getEmail());
-                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -23,9 +20,18 @@ public class WhiteListsEmails {
 
     public static ArrayList<WhiteMail> getWhiteList() {return whiteList;}
 
-    public boolean isInWhiteList(String checkEmail) {
+    public boolean isInWhiteListInsert(String checkEmail) {
         for (WhiteMail whiteMail : whiteList) {
             if (checkEmail.equals(whiteMail.getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInWhiteListDelete(String checkEmail, int checkID) {
+        for (WhiteMail whiteMail : whiteList) {
+            if (checkEmail.equals(whiteMail.getEmail()) || checkID == whiteMail.getID()) {
                 return true;
             }
         }

@@ -18,7 +18,7 @@ public class StockSeller {
     private JButton validerButton;
 
 
-    private static boolean verifInt(String s) {
+    public static boolean verifInt(String s) {
         boolean isInt = true;
         try{ Integer.parseInt(s); }
         catch(NumberFormatException nfe){ isInt = false; }
