@@ -8,6 +8,7 @@ public class WhiteMail {
     public WhiteMail(int ID, String email) {
         this.ID = ID;
         this.email = email;
+        System.out.println(this.ID + " " + this.email);
     }
 
     public WhiteMail(String email) {
@@ -15,7 +16,7 @@ public class WhiteMail {
     }
 
     public static int getID() {return ID;}
-    public static String getEmail() {return email;}
+    public static String getEmail() {System.out.println(email);return email;}
 
     public static void insertWhiteList(){
         //Fonction servant à mettre de nouvelles adresses dans la table WhiteList

@@ -18,16 +18,15 @@ public class WhiteListsEmails {
         }
     }
 
-    public static ArrayList<WhiteMail> getWhiteList() {
-        return whiteList;
-    }
+    public static ArrayList<WhiteMail> getWhiteList() {return whiteList;}
 
-    public boolean isInWhiteList(String checkEmail){
-        System.out.println(whiteList);
+    public boolean isInWhiteList(String checkEmail) {
         for (WhiteMail whiteMail : whiteList) {
-            System.out.println(whiteMail.getEmail());
+            if (checkEmail.equals(whiteMail.getEmail())) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public ArrayList<WhiteMail> refreshList() {
@@ -37,7 +36,6 @@ public class WhiteListsEmails {
                 try (ResultSet rs = st.executeQuery("SELECT * FROM white_list")){
                     while (rs.next()) {
                         whiteList.add(new WhiteMail(rs.getInt(1), rs.getString(2)));
-                        System.out.println(rs.getInt(1) + " " + rs.getString(2));
                     }
                 return whiteList;
                 }

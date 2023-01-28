@@ -19,6 +19,8 @@ public class WhiteListGestion {
 
     WhiteListGestion(){
 
+        this.table1.setModel(new ModelDeTableWhiteList(main.getWhiteList().getWhiteList()));
+
         retourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

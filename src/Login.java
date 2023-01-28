@@ -6,6 +6,7 @@ import java.util.Objects;
 
 public class Login {
     static Shops actualShop;
+
     public JPanel panelMain;
     private JPasswordField passwordField1;
     private JTextField textField1;
