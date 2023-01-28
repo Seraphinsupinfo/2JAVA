@@ -65,6 +65,11 @@ public class Display {
         frame.setContentPane(new StockAdmin().panelMain);
         frame.setSize(1000,750);
     }
+    protected static void shopManagement(){
+        //Initialisation menu
+        frame.setContentPane(new ShopManagement().panelMain);
+        frame.setSize(1000,750);
+    }
     public static void errorPopUp(String message){
         //Initialisation menu
         ErrorPopUp.varText=message;

@@ -9,6 +9,7 @@ public class HomeAdmin {
     private JButton gérerLesMagasinsButton;
     private JButton gérerLesEMailsButton;
     private JLabel labelText;
+    private JButton gérerLesStocksButton;
     private String firstName = main.getActualUser().getFirstName();
 
     public static WhiteListsEmails getWhiteListsEmails() {
@@ -33,6 +34,13 @@ public class HomeAdmin {
         });
 
         gérerLesMagasinsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.shopManagement();
+            }
+        });
+
+        gérerLesStocksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.stockAdmin();
