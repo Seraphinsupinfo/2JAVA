@@ -46,13 +46,24 @@ public class Display {
     protected static void stockSeller(){
         //Initialisation menu
         frame.setContentPane(new StockSeller().panelMain);
-        frame.setSize(1000,850);
+        frame.setSize(1000,750);
     }
 
     protected static void whiteList(){
         //Initialisation menu
         frame.setContentPane(new WhiteListGestion().panelMain);
-        frame.setSize(1000,850);
+        frame.setSize(1000,750);
+    }
+
+    protected static void userManagement(){
+        //Initialisation menu
+        frame.setContentPane(new UserManagement().panelMain);
+        frame.setSize(1000,750);
+    }
+    protected static void stockAdmin(){
+        //Initialisation menu
+        frame.setContentPane(new StockAdmin().panelMain);
+        frame.setSize(1000,750);
     }
     public static void errorPopUp(String message){
         //Initialisation menu

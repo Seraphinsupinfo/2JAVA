@@ -18,10 +18,24 @@ public class HomeAdmin {
     HomeAdmin(){
         labelText.setText("Bonjour "+ firstName + ", que voulez-vous faire ?");
 
+        gérerLesUtilisateursButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.userManagement();
+            }
+        });
+
         gérerLesEMailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.whiteList();
+            }
+        });
+
+        gérerLesMagasinsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.stockAdmin();
             }
         });
     }
