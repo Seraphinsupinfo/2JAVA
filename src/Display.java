@@ -65,6 +65,12 @@ public class Display {
         frame.setContentPane(new ShopManagement().panelMain);
         frame.setSize(1000,750);
     }
+
+    protected static void changeUserData(){
+        //Initialisation gestion des magasins
+        frame.setContentPane(new ChangeUserData().panelMain);
+        frame.setSize(700,500);
+    }
     public static void errorPopUp(String message){
 
         //Initialisation de la pop up d'erreur avec un message

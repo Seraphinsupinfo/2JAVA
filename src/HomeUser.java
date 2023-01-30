@@ -25,7 +25,7 @@ public class HomeUser {
         monCompteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //ryan
+               Display.changeUserData();
             }
         });
         seDéconnecterButton.addActionListener(new ActionListener() {
