@@ -42,7 +42,7 @@ public class Login {
                     System.out.println("connecté en tant que vendeur");
                     actualShop = new Shops(main.getActualUser().getShopID());
                     Display.homeSeller();
-                } else if (Objects.equals(role, "default")) {
+                } else if (Objects.equals(role, "client")) {
                     System.out.println("connecté en tant qu'utilisateur");
                     Display.homeUser();
                 } else {
