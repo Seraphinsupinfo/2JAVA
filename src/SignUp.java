@@ -10,6 +10,9 @@ public class SignUp {
     private JTextField nomDUtilisateurTextField;
     private JTextField emailTextField;
     private JButton retourButton;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JPasswordField passwordField1;
     public static String email;
     public SignUp() {
         continuerButton.addActionListener(new ActionListener() {

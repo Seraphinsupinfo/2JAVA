@@ -15,7 +15,7 @@ public class Display {
     protected static void signUp(){
         //Initialisation page s'inscrire
         frame.setContentPane(new SignUp().panelMain);
-        frame.setSize(400,300);
+        frame.setSize(450,450);
     }
     protected static void logIn(){
         //Initialisation page se connecter
