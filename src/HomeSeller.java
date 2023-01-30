@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 
 public class HomeSeller {
     public JPanel panelMain;
@@ -9,6 +8,7 @@ public class HomeSeller {
     private JButton ajouterDesArticlesButton;
     private JButton voirLesStocksButton;
     private JLabel labelText;
+    private JButton seDéconnecterButton;
 
     private String firstName = main.getActualUser().getFirstName();
     private String shop = Login.getActualShop().getName() + " " + Login.getActualShop().getLocation();
@@ -21,6 +21,26 @@ public class HomeSeller {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.stockSeller();
+            }
+        });
+        ajouterDesArticlesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //ryan
+            }
+        });
+        supprimerDesArticlesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //ryan
+            }
+        });
+        seDéconnecterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.frame.dispose();
+                Display.main();
             }
         });
     }

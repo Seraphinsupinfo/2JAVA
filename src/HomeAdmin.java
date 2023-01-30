@@ -10,6 +10,7 @@ public class HomeAdmin {
     private JButton gérerLesEMailsButton;
     private JLabel labelText;
     private JButton gérerLesStocksButton;
+    private JButton seDéconnecterButton;
     private String firstName = main.getActualUser().getFirstName();
 
     public static WhiteListsEmails getWhiteListsEmails() {
@@ -44,6 +45,14 @@ public class HomeAdmin {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.stockAdmin();
+            }
+        });
+
+        seDéconnecterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.frame.dispose();
+                Display.main();
             }
         });
     }
