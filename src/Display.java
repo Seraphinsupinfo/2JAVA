@@ -10,9 +10,6 @@ public class Display {
         frame.setSize(300,220);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        Display.errorPopUp("cbzcbeuz,regergerg;greg regergregre gregreger gregregerg regregerreg");
-        Display.errorPopUp("cbzcbeuz");
-        Display.errorPopUp("cbzcb regregerg regregerreg");
     }
 
     protected static void signUp(){
