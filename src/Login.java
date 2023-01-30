@@ -15,7 +15,6 @@ public class Login {
     public static Shops getActualShop() {
         return actualShop;
     }
-
     public Login() {
         retourButton.addActionListener(new ActionListener() {
             @Override
@@ -30,24 +29,28 @@ public class Login {
             public void actionPerformed(ActionEvent e) {
                 String checkUser = textField1.getText();
                 String checkPassword = String.valueOf(passwordField1.getPassword());
-                boolean userOk = main.getActualUser().validUser(checkUser, checkPassword);
-                String role = main.getActualUser().getRole();
-                if (!userOk){
-                    Display.errorPopUp("Identifiants incorrects");
-                } else if (Objects.equals(role, "admin")){
-                    System.out.println("connecté en tant qu'admin");
-                    Display.homeAdmin();
-                } else if (Objects.equals(role, "seller")) {
-                    System.out.println("connecté en tant que vendeur");
-                    actualShop = new Shops(main.getActualUser().getShopID());
-                    Display.homeSeller();
-                } else if (Objects.equals(role, "client")) {
-                    System.out.println("connecté en tant qu'utilisateur");
-                    Display.homeUser();
-                } else {
-                    Display.errorPopUp("Une erreur est survenue... rôle incorrect");
-                }
+                connectionUser(checkUser, checkPassword);
             }
         });
+    }
+
+    public static void connectionUser(String checkUser, String checkPassword){
+        boolean userOk = main.getActualUser().validUser(checkUser, checkPassword);
+        String role = main.getActualUser().getRole();
+        if (!userOk){
+            Display.errorPopUp("Identifiants incorrects");
+        } else if (Objects.equals(role, "admin")){
+            System.out.println("connecté en tant qu'admin");
+            Display.homeAdmin();
+        } else if (Objects.equals(role, "seller")) {
+            System.out.println("connecté en tant que vendeur");
+            actualShop = new Shops(main.getActualUser().getShopID());
+            Display.homeSeller();
+        } else if (Objects.equals(role, "client")) {
+            System.out.println("connecté en tant qu'utilisateur");
+            Display.homeUser();
+        } else {
+            Display.errorPopUp("Une erreur est survenue... rôle incorrect");
+        }
     }
 }

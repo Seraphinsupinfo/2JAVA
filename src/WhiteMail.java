@@ -25,7 +25,7 @@ public class WhiteMail {
 
     public void insertWhiteMail(){
         //Fonction servant à mettre de nouvelles adresses dans la table WhiteList
-        if (email.contains("@") && email.contains(".") && email.length() > 8) {
+        if (email.contains("@") && email.contains(".") && email.length() > 12) {
             if (main.getWhiteList().isInWhiteListInsert(email)){
                 Display.errorPopUp("Adresse mail déjà présente dans la liste");
             } else {

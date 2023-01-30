@@ -10,7 +10,7 @@ public class HomeUser {
     private JLabel labelText;
     private JButton seDéconnecterButton;
 
-    private String firstName = "[ta variable nom]";
+    private String firstName = main.getActualUser().getFirstName();
 
     HomeUser(){
 

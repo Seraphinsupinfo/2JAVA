@@ -37,10 +37,10 @@ public class Users {
                         role = rs.getString(5);
                         shopID = rs.getInt(6);
                         pseudo = rs.getString(7);
+                        System.out.println(ID + " " + firstName + " " + lastName + " " + role + " " + shopID + " " + pseudo);
                         loginOk = true;
                     }
                 }
-
                 return loginOk;
             } catch (SQLException | NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
