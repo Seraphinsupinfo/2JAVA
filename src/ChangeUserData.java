@@ -15,10 +15,10 @@ public class ChangeUserData {
     private JButton majPwdButton;
     private JLabel emailLabel;
 
-    protected String email = "ton adresse@mail.test";
-    protected String nom = "ton nom";
-    protected String prenom = "ton prénom";
-    protected String pseudo = "ton pseudo";
+    protected String email = main.getActualUser().getMail();
+    protected String nom = main.getActualUser().getLastName();
+    protected String prenom = main.getActualUser().getFirstName();
+    protected String pseudo = main.getActualUser().getPseudo();
     ChangeUserData() {
 
         emailLabel.setText("Email : " + email);

@@ -1,3 +1,4 @@
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,9 @@ public class Users {
     public String getRole() {return role;}
     public String getFirstName() {return firstName;}
     public int getShopID() {return shopID;}
+    public String getLastName() {return lastName;}
+    public String getPseudo() {return pseudo;}
+    public String getMail() {return mail;}
 
     public boolean validUser(String checkMail, String checkPassword){
         if (main.getConnectionDB().isPresent()){
@@ -26,7 +30,7 @@ public class Users {
                 if (rs.next()){
                     mail = rs.getString(4);
                     pwd = rs.getString(8);
-                    if (Objects.equals(mail, checkMail) && Objects.equals(pwd, checkPassword)) {
+                    if (Objects.equals(mail, checkMail) && PasswordHasher.verifyPassword(checkPassword, pwd)) {
                         ID = rs.getInt(1);
                         firstName = rs.getString(2);
                         lastName = rs.getString(3);
@@ -38,7 +42,7 @@ public class Users {
                 }
 
                 return loginOk;
-            } catch (SQLException e) {
+            } catch (SQLException | NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
             }
         }
