@@ -30,6 +30,8 @@ public class Users {
                 if (rs.next()){
                     mail = rs.getString(4);
                     pwd = rs.getString(8);
+                    System.out.println(PasswordHasher.hashPassword(checkPassword));
+                    System.out.println(pwd);
                     if (Objects.equals(mail, checkMail) && PasswordHasher.verifyPassword(checkPassword, pwd)) {
                         ID = rs.getInt(1);
                         firstName = rs.getString(2);
@@ -37,7 +39,6 @@ public class Users {
                         role = rs.getString(5);
                         shopID = rs.getInt(6);
                         pseudo = rs.getString(7);
-                        System.out.println(ID + " " + firstName + " " + lastName + " " + role + " " + shopID + " " + pseudo);
                         loginOk = true;
                     }
                 }

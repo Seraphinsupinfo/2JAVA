@@ -25,10 +25,9 @@ public class SignUp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (newUser()){
-                    Login.connectionUser(email, Arrays.toString(motDePasseField.getPassword()));
+                    Login.connectionUser(email, String.valueOf(motDePasseField.getPassword()));
                     Display.errorPopUp("Votre compte a bien été créé. Vous êtes maintenant connecté.");
                 }
-
             }
         });
         retourButton.addActionListener(new ActionListener() {
@@ -44,8 +43,8 @@ public class SignUp {
         String name = nameTextField.getText();
         String surname = surnameTextField.getText();
         String userName = nomDUtilisateurTextField.getText();
-        String password1 = Arrays.toString(motDePasseField.getPassword());
-        String password2 = Arrays.toString(confirmerMotDePasseField.getPassword());
+        String password1 = String.valueOf(motDePasseField.getPassword());
+        String password2 = String.valueOf(confirmerMotDePasseField.getPassword());
         if (email.isEmpty()) {
             Display.errorPopUp("Veuillez entrer votre adresse mail");
         } else if (!email.contains("@") || !email.contains(".") || email.length() < 12) {
@@ -56,10 +55,10 @@ public class SignUp {
             Display.errorPopUp("Veuillez entrer votre prénom");
         } else if (userName.isEmpty()) {
             Display.errorPopUp("Veuillez entrer votre pseudo");
-        } else if (password1.isEmpty()) {
-            Display.errorPopUp("Veuillez entrer un mot de passe");
-        } else if (password2.isEmpty()) {
-            Display.errorPopUp("Veuillez confirmer votre mot de passe");
+        } else if (password1.length() < 8) {
+            Display.errorPopUp("Veuillez entrer un mot de passe plus sécurisé");
+        } else if (password2.length() < 8) {
+            Display.errorPopUp("Veuillez écrire le même mot de passe");
         }else if (main.getWhiteList().isInWhiteListInsert(email)) {
             if (!isAlreadyUsed(email)) {
                 if (password1.equals(password2)) {
