@@ -21,17 +21,9 @@
           <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="36fb1" class="javax.swing.JLabel">
+      <component id="f699d" class="javax.swing.JTextField" binding="nameUpdateField">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Entrez un nom ou un ID :"/>
-        </properties>
-      </component>
-      <component id="fa645" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -39,29 +31,15 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="b6e34" class="javax.swing.JPasswordField" binding="passwordField2" default-binding="true">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="f699d" class="javax.swing.JTextField" binding="textField1" default-binding="true">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="9050b" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+      <component id="9050b" class="javax.swing.JTextField" binding="locationUpdateField">
         <constraints>
           <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="13c46" class="javax.swing.JLabel">
         <constraints>
@@ -95,17 +73,11 @@
           <text value="Magasins"/>
         </properties>
       </component>
-      <component id="5d9e3" class="javax.swing.JTable" binding="table1" default-binding="true">
+      <component id="5d9e3" class="javax.swing.JTable" binding="tableShops" default-binding="true">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="5408d" class="javax.swing.JScrollBar" binding="scrollBar1" default-binding="true">
-        <constraints>
-          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="6" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
@@ -133,7 +105,7 @@
           <text value="Entrez un Nom :"/>
         </properties>
       </component>
-      <component id="8b30e" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+      <component id="8b30e" class="javax.swing.JTextField" binding="shopNameAdd">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -151,13 +123,15 @@
           <text value="Entrez un emplacement :"/>
         </properties>
       </component>
-      <component id="bd9ba" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+      <component id="bd9ba" class="javax.swing.JTextField" binding="shopLocationAdd" custom-create="true">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="c2711" class="javax.swing.JButton" binding="ajouterButton" default-binding="true">
         <constraints>
@@ -165,6 +139,32 @@
         </constraints>
         <properties>
           <text value="Ajouter"/>
+        </properties>
+      </component>
+      <component id="7038c" class="javax.swing.JTextField" binding="IDUpdateField">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="f17" class="javax.swing.JTextField" binding="NameOrIDDel">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="36fb1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Entrez un nom ou un ID :"/>
         </properties>
       </component>
     </children>

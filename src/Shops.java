@@ -1,6 +1,7 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Shops {
@@ -41,6 +42,12 @@ public class Shops {
             }
 
         }
+    }
+
+    public Shops(int ID, String name, String location) {
+        this.ID = ID;
+        this.name = name;
+        this.location = location;
     }
 
     public ArrayList<Items> getStock(int shopID) {

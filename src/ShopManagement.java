@@ -1,24 +1,31 @@
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ShopManagement {
     private JButton retourButton;
-    private JPasswordField passwordField1;
     private JButton supprimerButton;
-    private JPasswordField passwordField2;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField nameUpdateField;
+    private JTextField locationUpdateField;
     private JButton mettreÀJourButton;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField shopNameAdd;
+    private JTextField shopLocationAdd;
     private JButton ajouterButton;
-    private JTable table1;
-    private JScrollBar scrollBar1;
+    private JTable tableShops;
+
     protected JPanel panelMain;
+    private JTextField IDUpdateField;
+    private JTextField NameOrIDDel;
 
     public ShopManagement() {
 
+        this.tableShops.setModel(new ModelDeTableShops(getAllShops()));
 
         retourButton.addActionListener(new ActionListener() {
             @Override
@@ -30,7 +37,7 @@ public class ShopManagement {
         ajouterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ton code ici
+                createNewShop(shopNameAdd.getText(), shopLocationAdd.getText());
             }
         });
 
@@ -49,3 +56,4 @@ public class ShopManagement {
         });
     }
 }
+

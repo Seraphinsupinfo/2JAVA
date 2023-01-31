@@ -30,8 +30,6 @@ public class Users {
                 if (rs.next()){
                     mail = rs.getString(4);
                     pwd = rs.getString(8);
-                    System.out.println(PasswordHasher.hashPassword(checkPassword));
-                    System.out.println(pwd);
                     if (Objects.equals(mail, checkMail) && PasswordHasher.verifyPassword(checkPassword, pwd)) {
                         ID = rs.getInt(1);
                         firstName = rs.getString(2);
