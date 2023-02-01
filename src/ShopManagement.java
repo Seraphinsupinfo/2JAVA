@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -16,7 +15,7 @@ public class ShopManagement {
     private JTextField nameAdd;
     private JTextField LocationAdd;
     private JButton ajouterButton;
-    private JTextField nameOrIDDel;
+    private JTextField IDDel;
     private JButton supprimerButton;
     private JTextField IDUpdate;
     private JTextField nameUpdate;
@@ -45,12 +44,37 @@ public class ShopManagement {
         supprimerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.shopManagement();
+                if (StockSeller.verifInt(IDDel.getText())){
+                    if (isInShops(Integer.parseInt(IDDel.getText()))) {
+                        deleteShop(Integer.parseInt(IDDel.getText()));
+                        Display.shopManagement();
+                    } else {
+                        Display.errorPopUp("Veuillez entrer un ID présent dans la liste");
+                    }
+                } else {
+                    Display.errorPopUp("Veuillez entrer un ID valide");
+                }
             }
         });
+
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (StockSeller.verifInt(IDUpdate.getText())){
+                    if (isInShops(Integer.parseInt(IDUpdate.getText()))){
+                        updateShop(Integer.parseInt(IDUpdate.getText()), nameUpdate.getText(), locationUpdate.getText());
+                    } else {
+                        Display.errorPopUp("L'ID entré ne correspond à aucun magasin.");
+                    }
+                } else {
+                    Display.errorPopUp("Veuillez entrer un ID correct");
+                }
+            }
+        });
+
     }
 
-    class ModelDeTableShops extends AbstractTableModel {
+    static class ModelDeTableShops extends AbstractTableModel {
         private ArrayList<Shops> shops;
         private String[] columns = {"ID", "Name", "Location"};
 
@@ -66,6 +90,10 @@ public class ShopManagement {
             return columns.length;
         }
         @Override
+        public String getColumnName(int column) {
+            return columns[column];
+        }
+        @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
             Shops shops1 = shops.get(rowIndex);
             switch (columnIndex) {
@@ -78,10 +106,6 @@ public class ShopManagement {
                 default:
                     return null;
             }
-        }
-        @Override
-        public String getColumnName(int column) {
-            return columns[column];
         }
     }
 
@@ -108,7 +132,6 @@ public class ShopManagement {
         } else if (location.isEmpty()) {
             Display.errorPopUp("Veuillez entrer la location de votre magasin");
         }
-        shopName.toUpperCase();
         try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("INSERT INTO shops (name, location) VALUES (?, ?)")) {
             preparedStatement.setString(1, shopName);
             preparedStatement.setString(2, location);
@@ -120,8 +143,82 @@ public class ShopManagement {
         }
     }
 
+    public void deleteShop(int ID){
+        try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("DELETE FROM shops WHERE ID = ?")) {
+            preparedStatement.setInt(1, ID);
+            preparedStatement.executeUpdate();
+            Display.shopManagement();
+            Display.errorPopUp("Magasin supprimé avec succès");
+        } catch (SQLException e) {
+            Display.errorPopUp("Une erreur est survenue... Suppression impossible");
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateShop(int ID, String newName, String newLocation){
+        boolean newNameOK = false;
+        boolean newLocationOK = false;
+        boolean doRequest = true;
+        if (!newName.isEmpty()){
+            if (newName.length() >= 5){
+                newNameOK = true;
+            } else {
+                Display.errorPopUp("Le nom doit faire au moins 5 caractères");
+                doRequest =  false;
+            }
+        }
+        if (!newLocation.isEmpty()){
+            if (newLocation.length() >= 3){
+                newLocationOK = true;
+            } else {
+                Display.errorPopUp("Le nom doit faire au moins 5 caractères");
+                doRequest =  false;
+            }
+        }
+        if (doRequest){
+            if (newNameOK && newLocationOK){
+                if (main.getConnectionDB().isPresent()) {
+                    try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("UPDATE shops SET name = ?, location = ? WHERE ID = ?")) {
+                        preparedStatement.setString(1, newName);
+                        preparedStatement.setString(2, newLocation);
+                        preparedStatement.setInt(3, ID);
+                        preparedStatement.executeUpdate();
+                        Display.errorPopUp("La mise à jour du magasin a bien été prise en compte");
+                    } catch (SQLException e) {
+                        Display.errorPopUp("Une erreur est survenue... Mise à jour impossible");
+                        throw new RuntimeException(e);
+                    }
+                }
+            } else if (newNameOK){
+                if (main.getConnectionDB().isPresent()) {
+                    try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("UPDATE shops SET name = ? WHERE ID = ?")) {
+                        preparedStatement.setString(1, newName);
+                        preparedStatement.setInt(2, ID);
+                        preparedStatement.executeUpdate();
+                        Display.errorPopUp("La mise à jour du magasin a bien été prise en compte");
+                    } catch (SQLException e) {
+                        Display.errorPopUp("Une erreur est survenue... Mise à jour impossible");
+                        throw new RuntimeException(e);
+                    }
+                }
+            } else if (newLocationOK){
+                if (main.getConnectionDB().isPresent()) {
+                    try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("UPDATE shops SET location = ? WHERE ID = ?")) {
+                        preparedStatement.setString(1, newLocation);
+                        preparedStatement.setInt(2, ID);
+                        preparedStatement.executeUpdate();
+                        Display.errorPopUp("La mise à jour du magasin a bien été prise en compte");
+                    } catch (SQLException e) {
+                        Display.errorPopUp("Une erreur est survenue... Mise à jour impossible");
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
     public boolean isInShops(int checkID) {
-        ArrayList<Shops> shops= new ArrayList<Shops>();
+        ArrayList<Shops> shops = new ArrayList<Shops>();
         shops = getAllShops();
         for (Shops shop : shops) {
             if (checkID == shop.getID()) {

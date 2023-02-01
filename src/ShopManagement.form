@@ -84,10 +84,10 @@
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Entrez un nom ou un ID"/>
+          <text value="Entrez un ID"/>
         </properties>
       </component>
-      <component id="7e022" class="javax.swing.JTextField" binding="nameOrIDDel">
+      <component id="7e022" class="javax.swing.JTextField" binding="IDDel">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
