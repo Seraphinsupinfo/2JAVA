@@ -24,10 +24,28 @@ public class ShopManagement {
     private JButton updateButton;
 
     public ShopManagement() {
+
+        this.ShopTables.setModel(new ModelDeTableShops(getAllShops()));
+
+        retourButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.homeAdmin();
+            }
+        });
+
         ajouterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                createNewShop(nameAdd.getText(), LocationAdd.getText());
+                Display.shopManagement();
+            }
+        });
 
+        supprimerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Display.shopManagement();
             }
         });
     }
@@ -100,5 +118,16 @@ public class ShopManagement {
             Display.errorPopUp("Une erreur est survenue... Création impossible");
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean isInShops(int checkID) {
+        ArrayList<Shops> shops= new ArrayList<Shops>();
+        shops = getAllShops();
+        for (Shops shop : shops) {
+            if (checkID == shop.getID()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
