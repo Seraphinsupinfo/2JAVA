@@ -37,7 +37,6 @@ public class ShopManagement {
             @Override
             public void actionPerformed(ActionEvent e) {
                 createNewShop(nameAdd.getText(), LocationAdd.getText());
-                Display.shopManagement();
             }
         });
 
@@ -47,7 +46,6 @@ public class ShopManagement {
                 if (StockSeller.verifInt(IDDel.getText())){
                     if (isInShops(Integer.parseInt(IDDel.getText()))) {
                         deleteShop(Integer.parseInt(IDDel.getText()));
-                        Display.shopManagement();
                     } else {
                         Display.errorPopUp("Veuillez entrer un ID présent dans la liste");
                     }
@@ -136,6 +134,7 @@ public class ShopManagement {
             preparedStatement.setString(1, shopName);
             preparedStatement.setString(2, location);
             preparedStatement.executeUpdate();
+            Display.shopManagement();
             Display.errorPopUp("Magasin créé avec succès");
         } catch (SQLException e) {
             Display.errorPopUp("Une erreur est survenue... Création impossible");
@@ -183,6 +182,7 @@ public class ShopManagement {
                         preparedStatement.setString(2, newLocation);
                         preparedStatement.setInt(3, ID);
                         preparedStatement.executeUpdate();
+                        Display.shopManagement();
                         Display.errorPopUp("La mise à jour du magasin a bien été prise en compte");
                     } catch (SQLException e) {
                         Display.errorPopUp("Une erreur est survenue... Mise à jour impossible");
@@ -195,6 +195,7 @@ public class ShopManagement {
                         preparedStatement.setString(1, newName);
                         preparedStatement.setInt(2, ID);
                         preparedStatement.executeUpdate();
+                        Display.shopManagement();
                         Display.errorPopUp("La mise à jour du magasin a bien été prise en compte");
                     } catch (SQLException e) {
                         Display.errorPopUp("Une erreur est survenue... Mise à jour impossible");
@@ -207,6 +208,7 @@ public class ShopManagement {
                         preparedStatement.setString(1, newLocation);
                         preparedStatement.setInt(2, ID);
                         preparedStatement.executeUpdate();
+                        Display.shopManagement();
                         Display.errorPopUp("La mise à jour du magasin a bien été prise en compte");
                     } catch (SQLException e) {
                         Display.errorPopUp("Une erreur est survenue... Mise à jour impossible");
