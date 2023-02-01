@@ -4,9 +4,8 @@ import java.awt.event.ActionListener;
 
 public class HomeSeller {
     public JPanel panelMain;
-    private JButton supprimerDesArticlesButton;
-    private JButton ajouterDesArticlesButton;
-    private JButton voirLesStocksButton;
+    private JButton monCompteButton;
+    private JButton gérerLesStocksButton;
     private JLabel labelText;
     private JButton seDéconnecterButton;
 
@@ -17,23 +16,17 @@ public class HomeSeller {
     HomeSeller(){
         labelText.setText("Bonjour "+ firstName + ", vous gérez le magasin " + shop);
 
-        voirLesStocksButton.addActionListener(new ActionListener() {
+        gérerLesStocksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.stockSeller();
             }
         });
-        ajouterDesArticlesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-                //ryan
-            }
-        });
-        supprimerDesArticlesButton.addActionListener(new ActionListener() {
+        monCompteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ryan
+                Display.changeUserData();
             }
         });
         seDéconnecterButton.addActionListener(new ActionListener() {

@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class ChangeUserData {
     private JButton retourButton;
@@ -29,7 +30,13 @@ public class ChangeUserData {
         retourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.homeUser();
+
+                if(Objects.equals(main.getActualUser().getRole(), "seller")){
+                    Display.homeSeller();
+                }
+                else if(Objects.equals(main.getActualUser().getRole(), "client")){
+                    Display.homeUser();
+                }
             }
         });
 
