@@ -10,8 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ShopManagement {
-    public Container panelMain;
-    private JButton retoursButton;
+    protected JPanel panelMain;
+    private JButton retourButton;
     private JTable ShopTables;
     private JTextField nameAdd;
     private JTextField LocationAdd;
