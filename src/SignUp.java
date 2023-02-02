@@ -75,8 +75,10 @@ public class SignUp {
                         throw new RuntimeException(e);
                     }
                 } else {
-                    Display.errorPopUp("Un compte existant possède déjà cette adresse mail");
+                    Display.errorPopUp("Veuillez entrer des mots de passe identiques");
                 }
+            } else {
+                Display.errorPopUp("Un compte existant possède déjà cette adresse mail");
             }
         } else {
             Display.errorPopUp("Votre adresse mail n'est pas autorisée à s'inscrire");

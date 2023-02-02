@@ -7,7 +7,7 @@ public class ChangeUserData {
     private JButton retourButton;
     protected JPanel panelMain;
     private JTextField nomTextField;
-    private JTextField prénomTextField;
+    private JTextField prenomTextField;
     private JTextField pseudoTextField;
     private JButton mettreÀJourButton;
     private JPasswordField ancienMDP;
@@ -24,7 +24,7 @@ public class ChangeUserData {
 
         emailLabel.setText("Email : " + email);
         nomTextField.setText(nom);
-        prénomTextField.setText(prenom);
+        prenomTextField.setText(prenom);
         pseudoTextField.setText(pseudo);
 
         retourButton.addActionListener(new ActionListener() {
@@ -43,14 +43,21 @@ public class ChangeUserData {
         mettreÀJourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ta fonction ici
+                main.getActualUser().updateData(prenomTextField.getText(), nomTextField.getText(), pseudoTextField.getText());
             }
         });
 
         majPwdButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //ta fonction ici
+                String lastPassword = String.valueOf(ancienMDP.getPassword());
+                String newPassword = String.valueOf(nouveauMDP.getPassword());
+                String newPassword2 = String.valueOf(ConfirmerMDP.getPassword());
+                if (newPassword.equals(newPassword2)){
+                    main.getActualUser().updatePassword(lastPassword, newPassword);
+                } else {
+                    Display.errorPopUp("Vos nouveaux mots de passe ne sont pas identiques");
+                }
             }
         });
     }
