@@ -85,11 +85,12 @@ public class Display {
         Errframe.setVisible(true);
     }
 
-    public static void actionPopUp(String message){
+    public static void actionPopUp(String message, String action){
 
         //Initialisation de la pop up interaction
         int w =message.length();
         ActionPopUp.varText=message;
+        ActionPopUp.action=action;
         Display.Actionframe = new JFrame("Istore");
         Actionframe.setContentPane(new ActionPopUp().panelMain);
         Actionframe.setSize(220+(w * 4),180);
