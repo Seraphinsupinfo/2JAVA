@@ -18,7 +18,7 @@ public class UserManagement {
     private JTextField emailField;
     private JTextField firstNameField;
     private JTextField pseudoField;
-    private JTextField passwordField;
+    private JPasswordField passwordField;
     private JButton ajouterButton;
     private JButton supprimerButton;
     private JButton mettreÀJourButton;
@@ -56,14 +56,22 @@ public class UserManagement {
         supprimerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ton code ici
+                delUser();
             }
         });
 
         mettreÀJourButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ton code ici
+                String newrole = (String) role.getSelectedItem();
+                if (newrole == "Admin"){
+                    newrole = "admin";
+                } else if (newrole == "Vendeur"){
+                    newrole = "seller";
+                } else if (newrole == "Client"){
+                    newrole = "client";
+                }
+                updateUser();
             }
         });
     }
@@ -89,7 +97,7 @@ public class UserManagement {
         String firstName = firstNameField.getText();
         String pseudo = pseudoField.getText();
         String email = emailField.getText();
-        String password = String.valueOf(passwordField.getText());
+        String password = String.valueOf(passwordField.getPassword());
         if (lastName.length() <= 3){
             Display.errorPopUp("Veuillez entrer un nom contenant au minumum 3 caractères.");
         } else if (firstName.length() <= 3){
@@ -163,6 +171,89 @@ public class UserManagement {
             }
         }
         return allID;
+    }
+
+    public void delUser() {
+        if (main.getConnectionDB().isPresent()) {
+            if (StockSeller.verifInt(IDField.getText())){
+                int ID = Integer.parseInt(IDField.getText());
+                if (getAllUsers().contains(ID)){
+                    try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("DELETE FROM users WHERE id = ?")) {
+                        preparedStatement.setInt(1, ID);
+                        preparedStatement.executeUpdate();
+                        Display.userManagement();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    Display.errorPopUp("Aucun user ne portant cet ID n'a été trouvé.");
+                }
+            } else {
+                Display.errorPopUp("La valeur du champs ID est incorrecte.");
+            }
+        }
+    }
+
+    public void updateUser() {
+        if (StockSeller.verifInt(IDField.getText())) {
+            int ID = Integer.parseInt(IDField.getText());
+            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT * FROM users WHERE id = ?")) {
+                preparedStatement.setInt(1, ID);
+                ResultSet rs = preparedStatement.executeQuery();
+                if (rs.next()) {
+                    String firstName = rs.getString(2);
+                    String lastName = rs.getString(3);
+                    String email = rs.getString(4);
+                    String userRole = rs.getString(5);
+                    Integer shopID = rs.getInt(6);
+                    String pseudo = rs.getString(7);
+                    String password = rs.getString(8);
+
+                    if (lastNameField.getText().length() >= 3) {
+                        lastName = lastNameField.getText();
+                    } else {
+                        Display.errorPopUp("Veuillez entrer un nom contenant au minumum 3 caractères.");
+                    }
+                    if (firstNameField.getText().length() >= 3) {
+                        firstName = firstNameField.getText();
+                    } else {
+                        Display.errorPopUp("Veuillez entrer un prénom contenant au minumum 3 caractères.");
+                    }
+                    if (pseudoField.getText().length() >= 3) {
+                        pseudo = pseudoField.getText();
+                    } else {
+                        Display.errorPopUp("Veuillez entrer un pseudo contenant au minumum 3 caractères.");
+                    }
+                    if (emailField.getText().length() <= 12 && emailField.getText().contains("@") && emailField.getText().contains(".")) {
+                        email = emailField.getText();
+                    } else {
+                        Display.errorPopUp("Veuillez entrer un email sous un bon format.");
+                    }
+                    if (String.valueOf(passwordField.getPassword()).length() > 8) {
+                        password = PasswordHasher.hashPassword(String.valueOf(passwordField.getPassword()));
+                    } else {
+                        Display.errorPopUp("Veuillez entrer un mot de passe plus sécurisé.");
+                    }
+                    if (shopID != null) {
+                        if (StockSeller.verifInt(shopIDField.getText())) {
+                            shopID = Integer.parseInt(shopIDField.getText());
+                        }
+                    }
+                    try (PreparedStatement preparedStatement2 = main.getConnectionDB().get().prepareStatement("UPDATE users SET first_name = ?, last_name = ?, email = ?, shop_id = ?, pseudo = ?, password = ? WHERE ID = ?")) {
+                        preparedStatement.setString(1, firstName);
+                        preparedStatement.setString(2, lastName);
+                        preparedStatement.setString(3, email);
+                        preparedStatement.setInt(4, shopID);
+                        preparedStatement.setString(5, pseudo);
+                        preparedStatement.setString(6, password);
+                        preparedStatement.setInt(7, ID);
+                    }
+                    Display.userManagement();
+                }
+            } catch (SQLException | NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
 
