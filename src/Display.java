@@ -12,8 +12,6 @@ public class Display {
         frame.setSize(300,220);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
-        actionPopUp("test 13232323232 2323 3333 3232");
     }
 
     protected static void signUp(){
