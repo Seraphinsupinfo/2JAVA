@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
@@ -25,7 +28,8 @@ public class UserManagement {
     private JTextField shopIDField;
 
     public UserManagement() {
-
+        ArrayList<Users> users = getAllUsers();
+        tableUser.setModel(new ModelDeTableUsers(users));
 
         retourButton.addActionListener(new ActionListener() {
             @Override
@@ -62,6 +66,22 @@ public class UserManagement {
                 //ton code ici
             }
         });
+    }
+
+    public ArrayList<Users> getAllUsers(){
+        ArrayList<Users> users= new ArrayList<Users>();
+        if (main.getConnectionDB().isPresent()) {
+            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT * FROM users")) {
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    users.add(new Users(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7)));
+                }
+                return users;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return users;
     }
 
     public void newUser(String role){
@@ -143,5 +163,48 @@ public class UserManagement {
             }
         }
         return allID;
+    }
+}
+
+class ModelDeTableUsers extends AbstractTableModel {
+    private ArrayList<Users> users;
+    private String[] columns = {"ID", "Prénom", "Nom", "email", "role", "shop_ID", "Pseudo"};
+
+    public ModelDeTableUsers(ArrayList<Users> users) {
+        this.users = users;
+    }
+    @Override
+    public int getRowCount() {
+        return users.size();
+    }
+    @Override
+    public int getColumnCount() {
+        return columns.length;
+    }
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Users users1 = users.get(rowIndex);
+        switch (columnIndex) {
+            case 0:
+                return users1.getID();
+            case 1:
+                return users1.getFirstName();
+            case 2:
+                return users1.getLastName();
+            case 3:
+                return users1.getMail();
+            case 4:
+                return users1.getRole();
+            case 5:
+                return users1.getShopID();
+            case 6:
+                return users1.getPseudo();
+            default:
+                return null;
+        }
+    }
+    @Override
+    public String getColumnName(int column) {
+        return columns[column];
     }
 }

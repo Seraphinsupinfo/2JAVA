@@ -14,12 +14,26 @@ public class Users {
     private String pwd;
     private int shopID;
 
+    public Users() {
+    }
+
+    public Users(int ID, String firstName, String lastName, String mail, String role, int shopID, String pseudo) {
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.mail = mail;
+        this.role = role;
+        this.shopID = shopID;
+        this.pseudo = pseudo;
+    }
+
     public String getRole() {return role;}
     public String getFirstName() {return firstName;}
     public int getShopID() {return shopID;}
     public String getLastName() {return lastName;}
     public String getPseudo() {return pseudo;}
     public String getMail() {return mail;}
+    public int getID() {return ID;}
 
     public boolean validUser(String checkMail, String checkPassword){
         if (main.getConnectionDB().isPresent()){
