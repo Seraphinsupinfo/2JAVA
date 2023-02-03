@@ -3,6 +3,8 @@ import javax.swing.*;
 public class Display {
     public static JFrame frame;
     public static JFrame Errframe;
+
+    public static JFrame Actionframe;
     public static void main(){
         //Initialisation page se connecter/s'inscrire et initialisation de la fenetre
         Display.frame = new JFrame("Istore");
@@ -10,6 +12,8 @@ public class Display {
         frame.setSize(300,220);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+        actionPopUp("test 13232323232 2323 3333 3232");
     }
 
     protected static void signUp(){
@@ -81,5 +85,17 @@ public class Display {
         Errframe.setSize(220+(w * 4),180);
         Errframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Errframe.setVisible(true);
+    }
+
+    public static void actionPopUp(String message){
+
+        //Initialisation de la pop up interaction
+        int w =message.length();
+        ActionPopUp.varText=message;
+        Display.Actionframe = new JFrame("Istore");
+        Actionframe.setContentPane(new ActionPopUp().panelMain);
+        Actionframe.setSize(220+(w * 4),180);
+        Actionframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Actionframe.setVisible(true);
     }
 }
