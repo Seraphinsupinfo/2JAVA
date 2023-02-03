@@ -211,27 +211,27 @@ public class UserManagement {
 
                     if (lastNameField.getText().length() >= 3) {
                         lastName = lastNameField.getText();
-                    } else {
+                    } else if (!lastNameField.getText().isEmpty()){
                         Display.errorPopUp("Veuillez entrer un nom contenant au minumum 3 caractères.");
                     }
                     if (firstNameField.getText().length() >= 3) {
                         firstName = firstNameField.getText();
-                    } else {
+                    } else if (!firstNameField.getText().isEmpty()){
                         Display.errorPopUp("Veuillez entrer un prénom contenant au minumum 3 caractères.");
                     }
                     if (pseudoField.getText().length() >= 3) {
                         pseudo = pseudoField.getText();
-                    } else {
+                    } else if (!pseudoField.getText().isEmpty()){
                         Display.errorPopUp("Veuillez entrer un pseudo contenant au minumum 3 caractères.");
                     }
                     if (emailField.getText().length() <= 12 && emailField.getText().contains("@") && emailField.getText().contains(".")) {
                         email = emailField.getText();
-                    } else {
+                    } else if (!emailField.getText().isEmpty()){
                         Display.errorPopUp("Veuillez entrer un email sous un bon format.");
                     }
                     if (String.valueOf(passwordField.getPassword()).length() > 8) {
                         password = PasswordHasher.hashPassword(String.valueOf(passwordField.getPassword()));
-                    } else {
+                    } else if (!passwordField.getText().isEmpty()) {
                         Display.errorPopUp("Veuillez entrer un mot de passe plus sécurisé.");
                     }
                     if (shopID != null) {
