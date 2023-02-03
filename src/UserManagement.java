@@ -1,22 +1,28 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserManagement {
     protected JPanel panelMain;
     private JButton retourButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JTextField textField7;
+    private JTextField IDField;
+    private JTextField lastNameField;
+    private JTextField emailField;
+    private JTextField firstNameField;
+    private JTextField pseudoField;
+    private JTextField passwordField;
     private JButton ajouterButton;
     private JButton supprimerButton;
     private JButton mettreÀJourButton;
     private JTable tableUser;
     private JScrollBar scrollBar1;
+    private JComboBox role;
+    private JTextField shopIDField;
 
     public UserManagement() {
 
@@ -31,7 +37,15 @@ public class UserManagement {
         ajouterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ton code ici
+                String newrole = (String) role.getSelectedItem();
+                if (newrole == "Admin"){
+                    newrole = "admin";
+                } else if (newrole == "Vendeur"){
+                    newrole = "seller";
+                } else if (newrole == "Client"){
+                    newrole = "client";
+                }
+                newUser(newrole);
             }
         });
 
@@ -48,5 +62,86 @@ public class UserManagement {
                 //ton code ici
             }
         });
+    }
+
+    public void newUser(String role){
+        String lastName = lastNameField.getText();
+        String firstName = firstNameField.getText();
+        String pseudo = pseudoField.getText();
+        String email = emailField.getText();
+        String password = String.valueOf(passwordField.getText());
+        if (lastName.length() <= 3){
+            Display.errorPopUp("Veuillez entrer un nom contenant au minumum 3 caractères.");
+        } else if (firstName.length() <= 3){
+            Display.errorPopUp("Veuillez entrer un prénom contenant au minumum 3 caractères.");
+        } else if (pseudo.length() <= 3){
+            Display.errorPopUp("Veuillez entrer un pseudo contenant au minumum 3 caractères.");
+        } else if (email.length() <= 12 && email.contains("@") && email.contains(".")){
+            Display.errorPopUp("Veuillez entrer un email sous un bon format.");
+        } else if (password.length() < 8){
+            Display.errorPopUp("Veuillez entrer un mot de passe plus sécurisé.");
+        } else {
+            if (main.getWhiteList().isInWhiteListInsert(email)){
+                Display.errorPopUp("Adresse mail déjà présente dans la liste");
+            } else {
+                if (role == "seller"){
+                    if (StockSeller.verifInt(shopIDField.getText())){
+                        int shopID = Integer.parseInt(shopIDField.getText());
+                        if (haveAllShops().contains(shopID)){
+                            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("INSERT INTO users (first_name, last_name, email, role, shop_id, pseudo, password) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                                preparedStatement.setString(1, firstName);
+                                preparedStatement.setString(2, lastName);
+                                preparedStatement.setString(3, email);
+                                preparedStatement.setString(4, role);
+                                preparedStatement.setInt(5, shopID);
+                                preparedStatement.setString(6, pseudo);
+                                preparedStatement.setString(7, PasswordHasher.hashPassword(password));
+                                preparedStatement.executeUpdate();
+                                Display.userManagement();
+                                Display.errorPopUp("Adresse mail ajoutée avec succès");
+                            } catch (SQLException | NoSuchAlgorithmException e) {
+                                Display.errorPopUp("Une erreur est survenue... Création impossible");
+                                throw new RuntimeException(e);
+                            }
+                        } else {
+                            Display.errorPopUp("L'ID de shop entré n'existe pas.");
+                        }
+                    } else {
+                    Display.errorPopUp("Veuillez entrer un ID de magasin valide");
+                    }
+                } else {
+                    try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("INSERT INTO users (first_name, last_name, email, role, pseudo, password) VALUES (?, ?, ?, ?, ?, ?)")) {
+                        preparedStatement.setString(1, firstName);
+                        preparedStatement.setString(2, lastName);
+                        preparedStatement.setString(3, email);
+                        preparedStatement.setString(4, role);
+                        preparedStatement.setString(5, pseudo);
+                        preparedStatement.setString(6, PasswordHasher.hashPassword(password));
+                        preparedStatement.executeUpdate();
+                        Display.userManagement();
+                        Display.errorPopUp("Adresse mail ajoutée avec succès");
+                    } catch (SQLException | NoSuchAlgorithmException e) {
+                        Display.errorPopUp("Une erreur est survenue... Création impossible");
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+    }
+
+    public ArrayList<Integer> haveAllShops(){
+        ArrayList<Integer> allID = new ArrayList<Integer>();
+        if (main.getConnectionDB().isPresent()) {
+            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT ID FROM shops")) {
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()){
+                    allID.add(rs.getInt(1));
+                }
+                return allID;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return allID;
     }
 }
