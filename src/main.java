@@ -31,7 +31,7 @@ public class main{
 
         } catch (SQLException e) {
             System.out.println("DB connection not OK");
-            Display.errorPopUp("Impossible d'établir une conection à la base de données.");
+            Display.errorPopUp("Impossible d'établir une connexion  à la base de données.");
             e.printStackTrace();
         }
     }
