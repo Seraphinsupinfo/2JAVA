@@ -204,11 +204,9 @@ public class UserManagement {
                     String firstName = rs.getString(2);
                     String lastName = rs.getString(3);
                     String email = rs.getString(4);
-                    String userRole = rs.getString(5);
                     Integer shopID = rs.getInt(6);
                     String pseudo = rs.getString(7);
                     String password = rs.getString(8);
-
                     if (lastNameField.getText().length() >= 3) {
                         lastName = lastNameField.getText();
                     } else if (!lastNameField.getText().isEmpty()){
@@ -224,7 +222,7 @@ public class UserManagement {
                     } else if (!pseudoField.getText().isEmpty()){
                         Display.errorPopUp("Veuillez entrer un pseudo contenant au minumum 3 caractères.");
                     }
-                    if (emailField.getText().length() <= 12 && emailField.getText().contains("@") && emailField.getText().contains(".")) {
+                    if (emailField.getText().length() > 12 && emailField.getText().contains("@") && emailField.getText().contains(".")) {
                         email = emailField.getText();
                     } else if (!emailField.getText().isEmpty()){
                         Display.errorPopUp("Veuillez entrer un email sous un bon format.");
@@ -240,15 +238,19 @@ public class UserManagement {
                         }
                     }
                     try (PreparedStatement preparedStatement2 = main.getConnectionDB().get().prepareStatement("UPDATE users SET first_name = ?, last_name = ?, email = ?, shop_id = ?, pseudo = ?, password = ? WHERE ID = ?")) {
-                        preparedStatement.setString(1, firstName);
-                        preparedStatement.setString(2, lastName);
-                        preparedStatement.setString(3, email);
-                        preparedStatement.setInt(4, shopID);
-                        preparedStatement.setString(5, pseudo);
-                        preparedStatement.setString(6, password);
-                        preparedStatement.setInt(7, ID);
+                        preparedStatement2.setString(1, firstName);
+                        preparedStatement2.setString(2, lastName);
+                        preparedStatement2.setString(3, email);
+                        preparedStatement2.setInt(4, shopID);
+                        preparedStatement2.setString(5, pseudo);
+                        preparedStatement2.setString(6, password);
+                        preparedStatement2.setInt(7, ID);
+                        preparedStatement2.executeUpdate();
+                        Display.userManagement();
+                    } catch (SQLException e) {
+                        Display.errorPopUp("Impossible de mettre à jour l'utilisateur, veuillez réessayer.");
+                        throw new RuntimeException(e);
                     }
-                    Display.userManagement();
                 }
             } catch (SQLException | NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
