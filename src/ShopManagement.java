@@ -107,7 +107,7 @@ public class ShopManagement {
         }
     }
 
-    public ArrayList<Shops> getAllShops() {
+    public static ArrayList<Shops> getAllShops() {
         ArrayList<Shops> shops = new ArrayList<Shops>();
         if (main.getConnectionDB().isPresent()){
             try (Statement st = main.getConnectionDB().get().createStatement()){

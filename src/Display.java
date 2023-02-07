@@ -85,16 +85,16 @@ public class Display {
         Errframe.setVisible(true);
     }
 
-    public static void actionPopUp(String message, String action){
-
-        //Initialisation de la pop up interaction
-        int w =message.length();
-        ActionPopUp.varText=message;
-        ActionPopUp.action=action;
-        Display.Actionframe = new JFrame("Istore");
-        Actionframe.setContentPane(new ActionPopUp().panelMain);
-        Actionframe.setSize(220+(w * 4),180);
-        Actionframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Actionframe.setVisible(true);
+    protected static void shopAcces(){
+        //Initialisation accès au choix du magasins
+        frame.setContentPane(new ShopAcces().panelMain);
+        frame.setSize(700,500);
     }
+
+    protected static void shopAcces2(int shopID){
+        //Initialisation accès au magasin
+        frame.setContentPane(new ShopAcces2(shopID).panelMain);
+        frame.setSize(700,500);
+    }
+
 }

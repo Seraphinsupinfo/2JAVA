@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/ShopAcces.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/ShopManagement.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/SignUp.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/StockAdmin.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/UserManagement.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/Users.java" dialect="GenericSQL" />
   </component>

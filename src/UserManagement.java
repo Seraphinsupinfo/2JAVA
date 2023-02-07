@@ -92,6 +92,22 @@ public class UserManagement {
         return users;
     }
 
+    public ArrayList<Integer> getAllUsersID(){
+        ArrayList<Integer> ID = new ArrayList<Integer>();
+        if (main.getConnectionDB().isPresent()) {
+            try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT ID FROM users")) {
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    ID.add(rs.getInt(1));
+                }
+                return ID;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return ID;
+    }
+
     public void newUser(String role){
         String lastName = lastNameField.getText();
         String firstName = firstNameField.getText();
@@ -177,7 +193,7 @@ public class UserManagement {
         if (main.getConnectionDB().isPresent()) {
             if (StockSeller.verifInt(IDField.getText())){
                 int ID = Integer.parseInt(IDField.getText());
-                if (getAllUsers().contains(ID)){
+                if (getAllUsersID().contains(ID)){
                     try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("DELETE FROM users WHERE id = ?")) {
                         preparedStatement.setInt(1, ID);
                         preparedStatement.executeUpdate();
@@ -232,7 +248,7 @@ public class UserManagement {
                     } else if (!passwordField.getText().isEmpty()) {
                         Display.errorPopUp("Veuillez entrer un mot de passe plus sécurisé.");
                     }
-                    if (shopID != null) {
+                    if (shopID != null && shopID != 0) {
                         if (StockSeller.verifInt(shopIDField.getText())) {
                             shopID = Integer.parseInt(shopIDField.getText());
                         }
