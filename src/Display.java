@@ -77,6 +77,7 @@ public class Display {
 
         //Initialisation de la pop up d'erreur avec un message
         int w =message.length();
+        Display.frame.setVisible(false);
         ErrorPopUp.varText=message;
         Display.Errframe = new JFrame("Erreur");
         Errframe.setContentPane(new ErrorPopUp().panelMain);

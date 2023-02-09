@@ -15,6 +15,7 @@ public class ErrorPopUp {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.Errframe.dispose();
+                Display.frame.setVisible(true);
             }
         });
     }
