@@ -163,7 +163,7 @@ public class UserManagement {
                         preparedStatement.setString(6, PasswordHasher.hashPassword(password));
                         preparedStatement.executeUpdate();
                         Display.userManagement();
-                        Display.errorPopUp("Adresse mail ajoutée avec succès");
+                        Display.errorPopUp("Utilisateur ajouté avec succès");
                     } catch (SQLException | NoSuchAlgorithmException e) {
                         Display.errorPopUp("Une erreur est survenue... Création impossible");
                         throw new RuntimeException(e);
