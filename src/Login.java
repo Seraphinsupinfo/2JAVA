@@ -40,14 +40,11 @@ public class Login {
         if (!userOk){
             Display.errorPopUp("Identifiants incorrects");
         } else if (Objects.equals(role, "admin")){
-            System.out.println("connecté en tant qu'admin");
             Display.homeAdmin();
         } else if (Objects.equals(role, "seller")) {
-            System.out.println("connecté en tant que vendeur");
             actualShop = new Shops(main.getActualUser().getShopID());
             Display.homeSeller();
         } else if (Objects.equals(role, "client")) {
-            System.out.println("connecté en tant qu'utilisateur");
             Display.homeUser();
         } else {
             Display.errorPopUp("Une erreur est survenue... rôle incorrect");

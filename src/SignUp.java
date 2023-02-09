@@ -49,11 +49,11 @@ public class SignUp {
             Display.errorPopUp("Veuillez entrer votre adresse mail");
         } else if (!email.contains("@") || !email.contains(".") || email.length() < 12) {
             Display.errorPopUp("Veuillez entrer une adresse mail valide");
-        } else if (name.isEmpty()){
+        } else if (name.length() < 3){
             Display.errorPopUp("Veillez entrer votre nom");
-        } else if (surname.isEmpty()) {
+        } else if (surname.length() < 3) {
             Display.errorPopUp("Veuillez entrer votre prénom");
-        } else if (userName.isEmpty()) {
+        } else if (userName.length() < 6) {
             Display.errorPopUp("Veuillez entrer votre pseudo");
         } else if (password1.length() < 8) {
             Display.errorPopUp("Veuillez entrer un mot de passe plus sécurisé");

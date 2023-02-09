@@ -23,14 +23,12 @@ public class main{
 
         //Initialisation connection
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            System.out.println("DB connection OK");
             connectionDB = Optional.ofNullable(DriverManager.getConnection(URL, USERNAME, PASSWORD));
             actualUser = new Users();
             whiteList = new WhiteListsEmails();
             Display.main();
 
         } catch (SQLException e) {
-            System.out.println("DB connection not OK");
             Display.errorPopUp("Impossible d'établir une connexion  à la base de données.");
             e.printStackTrace();
         }
@@ -39,9 +37,7 @@ public class main{
         //Charge juste les drivers
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Drivers OK");
         } catch (Exception ex){
-            System.err.println("Drivers not OK");
             ex.printStackTrace();
         }
     }

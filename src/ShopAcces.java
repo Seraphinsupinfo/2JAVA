@@ -43,10 +43,8 @@ public class ShopAcces {
             try (PreparedStatement preparedStatement = main.getConnectionDB().get().prepareStatement("SELECT ID FROM shops WHERE name = ? AND location = ?")) {
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, location);
-                System.out.println(name + " " + location);
                 ResultSet rs = preparedStatement.executeQuery();
                 if(rs.next()) {
-                    System.out.println(rs.getInt(1));
                     return rs.getInt(1);
                 }
             } catch (SQLException e) {
